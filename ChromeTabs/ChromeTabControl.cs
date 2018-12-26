@@ -44,6 +44,8 @@ namespace ChromeTabs
     ///
     /// </summary>
     [TemplatePart(Name = "PART_ItemsHolder", Type = typeof(Panel))]
+    /// 学习注释：
+    /// 这个相当于完全重写了TabControl;
     public class ChromeTabControl : Selector
     {
         private bool _addTabButtonClicked;
@@ -54,11 +56,14 @@ namespace ChromeTabs
 
         internal bool CanAddTabInternal { get; set; }
 
+        /// <summary>
+        /// 关闭页签的
+        /// </summary>
         public static readonly DependencyProperty CloseTabCommandProperty =
-    DependencyProperty.Register(
-        "CloseTabCommand",
-        typeof(ICommand),
-        typeof(ChromeTabControl));
+            DependencyProperty.Register(
+                "CloseTabCommand",
+                typeof(ICommand),
+                typeof(ChromeTabControl));
 
         public ICommand CloseTabCommand
         {
