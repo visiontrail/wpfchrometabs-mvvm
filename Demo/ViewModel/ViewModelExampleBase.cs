@@ -12,15 +12,46 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Demo.ViewModel
 {
+    /// <summary>
+    /// Demo的主界面VM基类;
+    /// 包含了主界面中的所有应该包含的属性和操作，例如;
+    /// 保存所有Tab页的集合:ItemCollection;
+    /// 调整Tab页顺序触发的函数处理:ReorderTabsCommand
+    /// 添加Tab页触发的函数处理:AddTabComand
+    /// 等等等;
+    /// </summary>
     public class ViewModelExampleBase : ViewModelBase
     {
         //since we don't know what kind of objects are bound, so the sorting happens outside with the ReorderTabsCommand.
-        public RelayCommand<TabReorder> ReorderTabsCommand { get; set; }
-        public RelayCommand AddTabCommand { get; set; }
-        public RelayCommand<TabBase> CloseTabCommand { get; set; }
+        // 通过这个项目学习MvvmLight框架的使用;
+        // RelayCommand泛型表示了触发命令之后，所携带的参数类型;
+        // 当然页能够像AddTabCommand一样，不携带自定义的参数类型;
+        
+        /// <summary>
+        /// 所有标签页内容集合;
+        /// </summary>
         public ObservableCollection<TabBase> ItemCollection { get; set; }
 
+        /// <summary>
+        /// 重新排序Tab标签;
+        /// </summary>
+        public RelayCommand<TabReorder> ReorderTabsCommand { get; set; }
+
+        /// <summary>
+        /// 添加Tab页的处理命令;
+        /// </summary>
+        public RelayCommand AddTabCommand { get; set; }
+
+        /// <summary>
+        /// 关闭Tab页的处理命令;
+        /// </summary>
+        public RelayCommand<TabBase> CloseTabCommand { get; set; }
+
+
         //This is the current selected tab, if you change it, the tab is selected in the tab control.
+        /// <summary>
+        /// 当前选择的Tab页;
+        /// </summary>
         private TabBase _selectedTab;
         public TabBase SelectedTab
         {

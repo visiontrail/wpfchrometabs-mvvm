@@ -13,6 +13,8 @@
         xmlns:conv="clr-namespace:Demo.Converters"
         Background="WhiteSmoke"
         DataContext="{Binding Source={StaticResource Locator},Path=ViewModelMainWindow}">
+    <!-- 看看上边，使用MvvmLight的好处就是，View和VM层之间不会直接引用，而是通过Locator类型关联的 -->
+    
     
     <!--These DataTemplates load the correct user control based on the viewmodel-->
     <Window.Resources>
@@ -35,6 +37,7 @@
         
         <!--The tab control with with tab tearing support.-->
         <!-- 如何使用：主界面使用ChromeTabControl控件 -->
+        <!-- VM层在ViewModelMainWindow中，其基类是ViewModelExampleBase -->
         <!-- 数据源：ObservableCollection<TabBase>存储所有的页签 -->
         <ct:ChromeTabControl x:Name="MyChromeTabControl"
                              MaximumTabWidth="200"
@@ -134,7 +137,6 @@
                     Content="Pinned tab example"
                     HorizontalAlignment="Left"
                     Margin="5"
-                    
                     Grid.Row="1"
                     Click="BnOpenPinnedTabExample_Click" />
             <Button x:Name="BnOpenCustomStyleExample"

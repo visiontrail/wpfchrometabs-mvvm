@@ -68,5 +68,6 @@ namespace Demo
         {
             new CustomStyleExampleWindow().Show();
         }
+        
     }
 }

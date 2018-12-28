@@ -16,6 +16,7 @@ namespace Demo.ViewModel
             vm1.IsPinned = true;
             ItemCollection.Add(vm1);
             ItemCollection.Add(CreateTab2());
+            ItemCollection.Add(CreateTab2());
             ItemCollection.Add(CreateTab3());
             ItemCollection.Add(CreateTabLoremIpsum());
             SelectedTab = ItemCollection.FirstOrDefault();

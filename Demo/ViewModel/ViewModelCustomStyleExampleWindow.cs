@@ -6,7 +6,9 @@ namespace Demo.ViewModel
 {
     public class ViewModelCustomStyleExampleWindow : ViewModelExampleBase, IViewModelCustomStyleExampleWindow
     {
-
+        /// <summary>
+        /// 带有闪烁效果的Tab标签页如何使用;
+        /// </summary>
         public ViewModelCustomStyleExampleWindow()
         {
             ItemCollection.Add(CreateTab1());

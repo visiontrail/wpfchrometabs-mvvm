@@ -44,20 +44,37 @@ namespace ChromeTabs
     ///
     /// </summary>
     [TemplatePart(Name = "PART_ItemsHolder", Type = typeof(Panel))]
-    /// 学习注释：
+
     /// 这个相当于完全重写了TabControl;
+    /// Tab页控制类，包含了所有控制Tab页的操作;
     public class ChromeTabControl : Selector
     {
         private bool _addTabButtonClicked;
         private object _lastSelectedItem;
         private Panel _itemsHolder;
         private ConditionalWeakTable<object, DependencyObject> _objectToContainerMap;
-        public static readonly DependencyProperty SelectedContentProperty = DependencyProperty.Register("SelectedContent", typeof(object), typeof(ChromeTabControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
-
         internal bool CanAddTabInternal { get; set; }
 
         /// <summary>
-        /// 关闭页签的
+        /// 选择Tab页内容？？的执行命令的依赖属性;
+        /// 类型是ICommand，宿主实例为ChromeTabControl;
+        /// </summary>
+        public static readonly DependencyProperty SelectedContentProperty =
+            DependencyProperty.Register
+            (
+                "SelectedContent", typeof(object), typeof(ChromeTabControl),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender)
+            );
+
+        public object SelectedContent
+        {
+            get => GetValue(SelectedContentProperty);
+            set => SetValue(SelectedContentProperty, value);
+        }
+        
+        /// <summary>
+        /// 关闭Tab页的执行命令的依赖属性;
+        /// 类型是ICommand，宿主实例为ChromeTabControl;
         /// </summary>
         public static readonly DependencyProperty CloseTabCommandProperty =
             DependencyProperty.Register(
@@ -71,11 +88,17 @@ namespace ChromeTabs
             set => SetValue(CloseTabCommandProperty, value);
         }
 
+        /// <summary>
+        /// 固定Tab页的执行命令的依赖属性;
+        /// 类型是ICommand，宿主实例为ChromeTabControl;
+        /// </summary>
         public static readonly DependencyProperty PinTabCommandProperty =
-    DependencyProperty.Register(
-       "PinTabCommand",
-       typeof(ICommand),
-       typeof(ChromeTabControl));
+            DependencyProperty.Register
+            (
+                "PinTabCommand",
+                typeof(ICommand),
+                typeof(ChromeTabControl)
+            );
 
         public ICommand PinTabCommand
         {
@@ -83,16 +106,24 @@ namespace ChromeTabs
             set => SetValue(PinTabCommandProperty, value);
         }
 
+        /// <summary>
+        /// 添加Tab页的执行命令的依赖属性;
+        /// 类型是ICommand，宿主实例为ChromeTabControl;
+        /// 
+        /// </summary>
         public static readonly DependencyProperty AddTabCommandProperty =
-    DependencyProperty.Register(
-        "AddTabCommand",
-        typeof(ICommand),
-        typeof(ChromeTabControl), new PropertyMetadata(AddTabCommandPropertyChanged));
+            DependencyProperty.Register
+            (
+                "AddTabCommand",
+                typeof(ICommand),
+                typeof(ChromeTabControl), new PropertyMetadata(AddTabCommandPropertyChanged)
+            );
 
         private static void AddTabCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (DesignerProperties.GetIsInDesignMode(d))
                 return;
+
             ChromeTabControl ct = (ChromeTabControl)d;
             if (e.NewValue != null)
             {
@@ -113,19 +144,29 @@ namespace ChromeTabs
                 return;
             ((ChromeTabPanel)ItemsHost).IsAddButtonEnabled = AddTabCommand.CanExecute(AddTabCommandParameter);
         }
-        public static DependencyProperty AddTabCommandParameterProperty =
-DependencyProperty.Register("AddTabCommandParameter", typeof(object), typeof(ChromeTabControl));
-        public object AddTabCommandParameter
-        {
-            get => GetValue(AddTabCommandParameterProperty);
-            set => SetValue(AddTabCommandParameterProperty, value);
-        }
+
         public ICommand AddTabCommand
         {
             get => (ICommand)GetValue(AddTabCommandProperty);
             set => SetValue(AddTabCommandProperty, value);
         }
 
+        /// <summary>
+        /// 带有参数的添加Tab页的依赖属性;
+        /// (原作者貌似没有实现);
+        /// </summary>
+        public static DependencyProperty AddTabCommandParameterProperty =
+                      DependencyProperty.Register("AddTabCommandParameter", typeof(object), typeof(ChromeTabControl));
+
+        public object AddTabCommandParameter
+        {
+            get => GetValue(AddTabCommandParameterProperty);
+            set => SetValue(AddTabCommandParameterProperty, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ReorderTabsCommandProperty =
             DependencyProperty.Register(
             "ReorderTabsCommand",
@@ -511,11 +552,6 @@ DependencyProperty.Register("AddTabCommandParameter", typeof(object), typeof(Chr
         }
 
 
-        public object SelectedContent
-        {
-            get => GetValue(SelectedContentProperty);
-            set => SetValue(SelectedContentProperty, value);
-        }
 
         internal int GetTabIndex(ChromeTabItem item)
         {

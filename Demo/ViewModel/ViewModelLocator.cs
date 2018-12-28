@@ -48,14 +48,6 @@ namespace Demo.ViewModel
 
         }
 
-        public IViewModelCustomStyleExampleWindow VieWModelCustomStyleExampleWindow
-        {
-             get
-            {
-                return ServiceLocator.Current.GetInstance<IViewModelCustomStyleExampleWindow>();
-            }
-        }
-
         public IViewModelMainWindow ViewModelMainWindow
         {
             get
@@ -70,8 +62,17 @@ namespace Demo.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<IViewModelPinnedTabExampleWindow>();
             }
-
         }
+
+        public IViewModelCustomStyleExampleWindow VieWModelCustomStyleExampleWindow
+        {
+             get
+            {
+                return ServiceLocator.Current.GetInstance<IViewModelCustomStyleExampleWindow>();
+            }
+        }
+
+
 
         
         public static void Cleanup()

@@ -4,8 +4,8 @@ using GalaSoft.MvvmLight;
 namespace Demo.ViewModel
 {
     /// <summary>
-    /// 标签页的基类;
-    /// ViewModelBase是MVVM的基类
+    /// 标签页**页签**的基类;
+    /// ViewModelBase是MVVM的基类;
     /// </summary>
     public abstract class TabBase : ViewModelBase
     {

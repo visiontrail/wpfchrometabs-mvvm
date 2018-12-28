@@ -5,8 +5,18 @@ using Demo.ViewModel;
 
 namespace Demo.SampleData
 {
+    /// <summary>
+    /// 这个是在Locator中;
+    /// if (ViewModelBase.IsInDesignModeStatic) 被注册关联的;
+    /// ?????????????
+    /// </summary>
     public class SampleViewModelMainWindow : ViewModelExampleBase, IViewModelMainWindow
     {
+        public SampleViewModelMainWindow()
+        {
+            Console.WriteLine("Enter the SampleViewModelMainWindow!");
+        }
+
         public bool CanMoveTabs
         {
             get => true;

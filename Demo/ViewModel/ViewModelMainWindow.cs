@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace Demo.ViewModel
 {
+    /// <summary>
+    /// 主程序启动后，所使用的VM层代码;
+    /// </summary>
     public class ViewModelMainWindow : ViewModelExampleBase, IViewModelMainWindow
     {
         //this property is to show you can lock the tabs with a binding
@@ -40,6 +43,9 @@ namespace Demo.ViewModel
             ItemCollection.Add(CreateTab1());
             ItemCollection.Add(CreateTab2());
             ItemCollection.Add(CreateTab3());
+            ItemCollection.Add(CreateTab3());
+            ItemCollection.Add(CreateTab2());
+            ItemCollection.Add(CreateTab1());
             ItemCollection.Add(CreateTabLoremIpsum());
 
             SelectedTab = ItemCollection.FirstOrDefault();
