@@ -118,8 +118,6 @@
         </Setter>
     </Style>
 
-
-
     <SolidColorBrush x:Key="TabStrokeBrush">#FF999999</SolidColorBrush>
     <SolidColorBrush x:Key="SelectedTabStrokeBrush">WhiteSmoke</SolidColorBrush>
     <SolidColorBrush x:Key="TabHighlightBrush">White</SolidColorBrush>
@@ -174,14 +172,17 @@
                                           HorizontalAlignment="Stretch"
                                           ContentSource="Header">
                         </ContentPresenter>
+                        
                         <Button KeyboardNavigation.IsTabStop="False"
                                 x:Name="CloseButton"
                                 Style="{StaticResource CloseButtonStyle}"
                                 Grid.Column="2"
                                 Command="{x:Static local:ChromeTabItem.CloseTabCommand}">
                         </Button>
+
                     </Grid>
                     <ControlTemplate.Triggers>
+                        
                         <!--This trigger hides the close button on each tab that is shrunk to below a minimum width-->
                         <DataTrigger Binding="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource IsLessThanConverter}, ConverterParameter={StaticResource MinTabWidthToShowCloseButton}}"
                                      Value="True">
@@ -189,6 +190,7 @@
                                     TargetName="CloseButton"
                                     Value="Collapsed" />
                         </DataTrigger>
+                        
                         <!--This trigger shows the close button on every tab that is selected, unless it is pinned-->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -201,6 +203,7 @@
                                     Property="Visibility"
                                     Value="Visible" />
                         </MultiTrigger>
+                        
                         <!--This trigger hides the close button on pinned tabs-->
                         <Trigger Property="IsPinned"
                                  Value="True">
@@ -208,6 +211,7 @@
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </Trigger>
+                        
                         <!--This trigger changes the look of the currently selected tab item-->
                         <Trigger Property="IsSelected"
                                  Value="True">

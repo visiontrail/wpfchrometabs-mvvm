@@ -64,7 +64,7 @@ namespace ChromeTabs
         private ChromeTabControl _parent;
         private Rect _addButtonRect;
         private Size _addButtonSize;
-        private Button _addButton;
+        private Button _addButton;                          // 添加页签按钮;
         private DateTime _lastMouseDown;
         private object _lockObject = new object();
 

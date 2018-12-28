@@ -3,8 +3,15 @@ using GalaSoft.MvvmLight;
 
 namespace Demo.ViewModel
 {
+    /// <summary>
+    /// 标签页的基类;
+    /// ViewModelBase是MVVM的基类
+    /// </summary>
     public abstract class TabBase : ViewModelBase
     {
+        /// <summary>
+        /// Tab页的编号;
+        /// </summary>
         private int _tabNumber;
         public int TabNumber
         {
@@ -18,6 +25,9 @@ namespace Demo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Tab页的名称(后续就是基站名称吧);
+        /// </summary>
         private string _tabName;
         public string TabName
         {
@@ -31,7 +41,9 @@ namespace Demo.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// 是否固定;
+        /// </summary>
         private bool _isPinned;
         public bool IsPinned
         {
@@ -45,7 +57,9 @@ namespace Demo.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Tab的标志;
+        /// </summary>
         private ImageSource _tabIcon;
         public ImageSource TabIcon
         {

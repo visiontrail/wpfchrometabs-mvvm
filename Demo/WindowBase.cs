@@ -68,6 +68,7 @@ namespace Demo
             Point cursorPosition = (Point)win.Tag;
             MoveWindow(win, cursorPosition);
         }
+
         private void MoveWindow(Window win, Point pt)
         {
             //Use a BeginInvoke to delay the execution slightly, else we can have problems grabbing the newly opened window.

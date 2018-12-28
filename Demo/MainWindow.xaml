@@ -13,6 +13,7 @@
         xmlns:conv="clr-namespace:Demo.Converters"
         Background="WhiteSmoke"
         DataContext="{Binding Source={StaticResource Locator},Path=ViewModelMainWindow}">
+    
     <!--These DataTemplates load the correct user control based on the viewmodel-->
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:TabClass1}">
@@ -25,12 +26,16 @@
             <usercontrols:UserControl3 />
         </DataTemplate>
     </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        
         <!--The tab control with with tab tearing support.-->
+        <!-- 如何使用：主界面使用ChromeTabControl控件 -->
+        <!-- 数据源：ObservableCollection<TabBase>存储所有的页签 -->
         <ct:ChromeTabControl x:Name="MyChromeTabControl"
                              MaximumTabWidth="200"
                              TabPersistBehavior="Timed"
@@ -48,6 +53,7 @@
                              ReorderTabsCommand="{Binding ReorderTabsCommand}"
                              TabTearTriggerDistance="10"
                              TabDraggedOutsideBonds="TabControl_TabDraggedOutsideBonds">
+            
             <!--We override the control template here to show how you can modify the properties of tab panel and content presenter-->
             <ct:ChromeTabControl.Template>
                 <ControlTemplate TargetType="{x:Type ct:ChromeTabControl}">
@@ -120,6 +126,26 @@
                 </DataTemplate>
             </ct:ChromeTabControl.ItemTemplate>
         </ct:ChromeTabControl>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Button x:Name="BnOpenPinnedTabExample"
+                    Content="Pinned tab example"
+                    HorizontalAlignment="Left"
+                    Margin="5"
+                    
+                    Grid.Row="1"
+                    Click="BnOpenPinnedTabExample_Click" />
+            <Button x:Name="BnOpenCustomStyleExample"
+                    Content="Custom style example"
+                    HorizontalAlignment="Left"
+                    Margin="5"
+                   
+                    Grid.Row="1"
+                    Click="BnOpenCustomStyleExample_Click" />
+        </StackPanel>
+
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
@@ -143,24 +169,7 @@
                       IsChecked="{Binding CanMoveTabs}"
                       VerticalAlignment="Center" />
         </StackPanel>
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Left">
-            <Button x:Name="BnOpenPinnedTabExample"
-                    Content="Pinned tab example"
-                    HorizontalAlignment="Left"
-                    Margin="5"
-                    
-                    Grid.Row="1"
-                    Click="BnOpenPinnedTabExample_Click" />
-            <Button x:Name="BnOpenCustomStyleExample"
-                    Content="Custom style example"
-                    HorizontalAlignment="Left"
-                    Margin="5"
-                   
-                    Grid.Row="1"
-                    Click="BnOpenCustomStyleExample_Click" />
-        </StackPanel>
+        
 
     </Grid>
 </local:WindowBase>
