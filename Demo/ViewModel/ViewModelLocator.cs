@@ -46,6 +46,8 @@ namespace Demo.ViewModel
                 SimpleIoc.Default.Register<IViewModelCustomStyleExampleWindow, ViewModelCustomStyleExampleWindow>();
             }
 
+            SimpleIoc.Default.Register<TabPageClass1>();
+
         }
 
         public IViewModelMainWindow ViewModelMainWindow
@@ -72,7 +74,13 @@ namespace Demo.ViewModel
             }
         }
 
-
+        public TabPageClass1 TabPage1
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TabPageClass1>();
+            }
+        }
 
         
         public static void Cleanup()

@@ -6,7 +6,10 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Demo.SampleData
 {
-    class SampleViewModelPinnedTabExampleWindow:ViewModelExampleBase,IViewModelPinnedTabExampleWindow
+    /// <summary>
+    /// 注：这个类型没有用，用的是ViewModel中的ViewModelPinnedTabExampleWindow类型;
+    /// </summary>
+    class SampleViewModelPinnedTabExampleWindow : ViewModelExampleBase,IViewModelPinnedTabExampleWindow
     {
 
         public RelayCommand<TabBase> PinTabCommand

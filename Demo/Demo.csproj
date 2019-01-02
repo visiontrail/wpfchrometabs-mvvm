@@ -75,6 +75,9 @@
     <Compile Include="DockingWindow.xaml.cs">
       <DependentUpon>DockingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PinnedTabExampleWindow.xaml.cs">
       <DependentUpon>PinnedTabExampleWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,7 @@
     </Compile>
     <Compile Include="Utilities\Win32.cs" />
     <Compile Include="ViewModel\TabClass4.cs" />
+    <Compile Include="ViewModel\TabPageClass1.cs" />
     <Compile Include="ViewModel\ViewModelCustomStyleExampleWindow.cs" />
     <Compile Include="ViewModel\ViewModelExampleBase.cs" />
     <Compile Include="ViewModel\ViewModelMainWindow.cs" />
@@ -128,6 +132,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PinnedTabExampleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

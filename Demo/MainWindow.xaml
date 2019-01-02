@@ -13,10 +13,14 @@
         xmlns:conv="clr-namespace:Demo.Converters"
         Background="WhiteSmoke"
         DataContext="{Binding Source={StaticResource Locator},Path=ViewModelMainWindow}">
-    <!-- 看看上边，使用MvvmLight的好处就是，View和VM层之间不会直接引用，而是通过Locator类型关联的 -->
+    <!-- 
+         看看上边，就是使用MvvmLight之后，在全局定义的此View对应的VM层
+         使用MvvmLight的好处就是，View和VM层之间不会直接引用，而是通过Locator类型关联的 
+    -->
     
     
     <!--These DataTemplates load the correct user control based on the viewmodel-->
+    <!-- 在页面中呈现的三个用户控件，这几行什么代码？？？ -->
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:TabClass1}">
             <usercontrols:UserControl1 />
@@ -27,6 +31,9 @@
         <DataTemplate DataType="{x:Type vm:TabClass3}">
             <usercontrols:UserControl3 />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TabClass4}">
+            <usercontrols:UserControl4/>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid>
@@ -36,9 +43,9 @@
         </Grid.RowDefinitions>
         
         <!--The tab control with with tab tearing support.-->
-        <!-- 如何使用：主界面使用ChromeTabControl控件 -->
+        <!-- 如何在主界面中使用ChromeTabControl控件 -->
         <!-- VM层在ViewModelMainWindow中，其基类是ViewModelExampleBase -->
-        <!-- 数据源：ObservableCollection<TabBase>存储所有的页签 -->
+        <!-- ItemsSource数据源：ObservableCollection<TabBase>存储所有的页签 -->
         <ct:ChromeTabControl x:Name="MyChromeTabControl"
                              MaximumTabWidth="200"
                              TabPersistBehavior="Timed"
@@ -58,45 +65,60 @@
                              TabDraggedOutsideBonds="TabControl_TabDraggedOutsideBonds">
             
             <!--We override the control template here to show how you can modify the properties of tab panel and content presenter-->
+            <!-- 整个页面的布局 -->
             <ct:ChromeTabControl.Template>
                 <ControlTemplate TargetType="{x:Type ct:ChromeTabControl}">
+                    
                     <ControlTemplate.Resources>
                         <ctConv:TabPersistBehaviorToContentPresenterVisibilityConverter x:Key="TabPersistBehaviorToContentPresenterVisibilityConverter" />
                         <ctConv:TabPersistBehaviorToItemHolderVisibilityConverter x:Key="TabPersistBehaviorToItemHolderVisibilityConverter" />
                     </ControlTemplate.Resources>
+                    
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+                        
+                        <!-- 容纳Tab页的那一条 -->
                         <Border Background="{TemplateBinding Background}"
                                 BorderThickness="0,0,0,1"
-                                BorderBrush="#FF999999"
+                                BorderBrush="#FFFFFF99"
                                 Grid.Row="0"
                                 Padding="10,5,10,0">
-                            <ct:ChromeTabPanel IsItemsHost="True"
-                                               Background="{TemplateBinding Background}" />
+                            
+                            <ct:ChromeTabPanel IsItemsHost="True" Background="{TemplateBinding Background}" />
+                            
                         </Border>
-
+                        
+                        <!-- 容纳页签内容的容器 -->
                         <Grid Grid.Row="1"
                               Visibility="{TemplateBinding TabPersistBehavior,Converter={StaticResource TabPersistBehaviorToContentPresenterVisibilityConverter}}">
+                            
+                            <!-- 内容的容器 -->
                             <ContentPresenter Content="{TemplateBinding SelectedContent}" />
+                            
                         </Grid>
+                        
                         <Grid x:Name="PART_ItemsHolder"
                               Grid.Row="1"
                               Visibility="{TemplateBinding TabPersistBehavior,Converter={StaticResource TabPersistBehaviorToItemHolderVisibilityConverter}}" />
                     </Grid>
                 </ControlTemplate>
             </ct:ChromeTabControl.Template>
+            
             <!--We must override the item template to show our tab name in the header. Here we use a simple
             textblock, but you could put any combination of controls here. Uncomment the orange border to show
             the bounds of the header content presenter-->
+            <!-- Tab标签页模板 -->
             <ct:ChromeTabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type ct:ChromeTabItem}}}">
 
                         <!--<Border BorderBrush="Orange"
                                 BorderThickness="1">-->
+                        
+                        <!-- Tab标签页中的内容，一个Icon和Tab名字 -->
                         <StackPanel Orientation="Horizontal"
                                     Background="Transparent">
                             <Image Source="{Binding TabIcon}"
@@ -109,7 +131,10 @@
                         </StackPanel>
                         <!--</Border>-->
 
-                        <!--We can implement a context menu for the header here. The ChromeTabItems expose for convenience the following commands, "CloseTabCommand: close the current tab, "CloseAllTabsCommand", and "CloseOtherTabsCommand", which closes all tabs except the current.-->
+                        <!--We can implement a context menu for the header here. The ChromeTabItems expose for convenience the following commands, 
+                        "CloseTabCommand: close the current tab, "CloseAllTabsCommand", and "CloseOtherTabsCommand", which closes all tabs except the current.-->
+                        
+                        <!-- 右键的菜单 -->
                         <Grid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Close"
@@ -122,7 +147,6 @@
                                           Command="{Binding Path=PlacementTarget.Tag.CloseOtherTabsCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                           CommandTarget="{Binding Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           CommandParameter="{Binding}" />
-
                             </ContextMenu>
                         </Grid.ContextMenu>
                     </Grid>
@@ -130,6 +154,7 @@
             </ct:ChromeTabControl.ItemTemplate>
         </ct:ChromeTabControl>
 
+        <!-- 界面底下的几个按钮 -->
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Left">

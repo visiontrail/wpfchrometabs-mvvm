@@ -6,9 +6,7 @@ using Demo.ViewModel;
 namespace Demo.SampleData
 {
     /// <summary>
-    /// 这个是在Locator中;
-    /// if (ViewModelBase.IsInDesignModeStatic) 被注册关联的;
-    /// ?????????????
+    /// 注：这个类型没有用，用的是ViewModel中的ViewModelSampleBase;
     /// </summary>
     public class SampleViewModelMainWindow : ViewModelExampleBase, IViewModelMainWindow
     {

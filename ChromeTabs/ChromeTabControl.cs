@@ -43,6 +43,8 @@ namespace ChromeTabs
     ///     <MyNamespace:ChromeTabs/>
     ///
     /// </summary>
+    
+    // 这个是什么？
     [TemplatePart(Name = "PART_ItemsHolder", Type = typeof(Panel))]
 
     /// 这个相当于完全重写了TabControl;
@@ -152,7 +154,7 @@ namespace ChromeTabs
         }
 
         /// <summary>
-        /// 带有参数的添加Tab页的依赖属性;
+        /// 带有参数的添加Tab页的依赖命令属性;
         /// (原作者貌似没有实现);
         /// </summary>
         public static DependencyProperty AddTabCommandParameterProperty =
@@ -165,7 +167,7 @@ namespace ChromeTabs
         }
 
         /// <summary>
-        /// 
+        /// 用户重新排序Tab页的依赖命令属性;
         /// </summary>
         public static readonly DependencyProperty ReorderTabsCommandProperty =
             DependencyProperty.Register(

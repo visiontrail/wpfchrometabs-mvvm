@@ -28,7 +28,7 @@ namespace Demo.ViewModel
         // 当然页能够像AddTabCommand一样，不携带自定义的参数类型;
         
         /// <summary>
-        /// 所有标签页内容集合;
+        /// 所有标签页内容集合,ChromeTabs控件，可容纳自定义的类型;
         /// </summary>
         public ObservableCollection<TabBase> ItemCollection { get; set; }
 
@@ -90,30 +90,70 @@ namespace Demo.ViewModel
 
         protected TabClass1 CreateTab1()
         {
-            var tab = new TabClass1 { TabName = "Tab class 1", MyStringContent = "Try drag the tab from left to right", TabIcon = new BitmapImage(new Uri("/Resources/1.png", UriKind.Relative)) };
+            var tab = new TabClass1
+            {
+                TabName = "Tab class 1",
+                MyStringContent = "Try drag the tab from left to right",
+                TabIcon = new BitmapImage(new Uri("/Resources/1.png", UriKind.Relative))
+            };
             return tab;
         }
         protected TabClass2 CreateTab2()
         {
-            var tab = new TabClass2 { TabName = "Tab class 2, with a long name", MyStringContent = "Try drag the tab outside the bonds of the tab control", MyNumberCollection = new[] { 1, 2, 3, 4 }, MySelectedNumber = 1, TabIcon = new BitmapImage(new Uri("/Resources/2.png", UriKind.Relative)) };
+            var tab = new TabClass2
+            {
+                TabName = "Tab class 2, with a long name",
+                MyStringContent = "Try drag the tab outside the bonds of the tab control",
+                MyNumberCollection = new[] { 1, 2, 3, 4 },
+                MySelectedNumber = 1,
+                TabIcon = new BitmapImage(new Uri("/Resources/2.png", UriKind.Relative))
+            };
             return tab;
 
         }
         protected TabClass3 CreateTab3()
         {
-            var tab = new TabClass3 { TabName = "Tab class 3", MyStringContent = "Try right clicking on the tab header. This tab can not be dragged out to a new window, to demonstrate that you can dynamically choose what tabs can, based on the viewmodel.", MyImageUrl = new Uri("/Resources/Kitten.jpg", UriKind.Relative), TabIcon = new BitmapImage(new Uri("/Resources/3.png", UriKind.Relative)) };
+            var tab = new TabClass3
+            {
+                TabName = "Tab class 3",
+                MyStringContent = "Try right clicking on the tab header. This tab can not be dragged out to a new window, to demonstrate that you can dynamically choose what tabs can, based on the viewmodel.",
+                MyImageUrl = new Uri("/Resources/Kitten.jpg", UriKind.Relative),
+                TabIcon = new BitmapImage(new Uri("/Resources/3.png", UriKind.Relative))
+            };
             return tab;
         }
         protected TabClass4 CreateTab4()
         {
-            var tab = new TabClass4 { TabName = "Tab class 4", MyStringContent = "This tab demonstrates a custom tab header implementation", IsBlinking=true };
+            var tab = new TabClass4
+            {
+                TabName = "Tab class 4",
+                MyStringContent = "This tab demonstrates a custom tab header implementation",
+                IsBlinking =true
+            };
             return tab;
         }
         protected TabClass1 CreateTabLoremIpsum()
         {
-            var tab = new TabClass1 { TabName = "Tab class 1", MyStringContent = Resources.LoremImpsum, TabIcon = new BitmapImage(new Uri("/Resources/1.png", UriKind.Relative)) };
+            var tab = new TabClass1
+            {
+                TabName = "Tab class 1",
+                MyStringContent = Resources.LoremImpsum,
+                TabIcon = new BitmapImage(new Uri("/Resources/1.png", UriKind.Relative))
+            };
             return tab;
         }
+        protected TabPageClass1 CreateTabPageClass1()
+        {
+            var tab = new TabPageClass1
+            {
+                TabName = "Tab Page",
+                Label1Show = "LabelShow",
+                TabIcon = new BitmapImage(new Uri("/Resources/1.png", UriKind.Relative))
+            };
+
+            return tab;
+        }
+
         /// <summary>
         /// Reorder the tabs and refresh collection sorting.
         /// </summary>

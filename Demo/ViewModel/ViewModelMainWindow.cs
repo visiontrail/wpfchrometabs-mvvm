@@ -40,12 +40,10 @@ namespace Demo.ViewModel
         public ViewModelMainWindow()
         {
             //Adding items to the collection creates a tab
-            ItemCollection.Add(CreateTab1());
-            ItemCollection.Add(CreateTab2());
-            ItemCollection.Add(CreateTab3());
             ItemCollection.Add(CreateTab3());
             ItemCollection.Add(CreateTab2());
             ItemCollection.Add(CreateTab1());
+            ItemCollection.Add(CreateTabPageClass1());
             ItemCollection.Add(CreateTabLoremIpsum());
 
             SelectedTab = ItemCollection.FirstOrDefault();
