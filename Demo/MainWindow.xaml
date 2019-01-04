@@ -20,8 +20,10 @@
     
     
     <!--These DataTemplates load the correct user control based on the viewmodel-->
-    <!-- 在页面中呈现的三个用户控件，这几行什么代码？？？ -->
+    <!-- 在页面中呈现的三个用户控件，他们在Demo程序中被当作模板 -->
     <Window.Resources>
+        
+        <!-- 数据模板1：模板的对应的VM数据类型是TabClass1，根节点是UserControl1 -->
         <DataTemplate DataType="{x:Type vm:TabClass1}">
             <usercontrols:UserControl1 />
         </DataTemplate>
@@ -32,8 +34,9 @@
             <usercontrols:UserControl3 />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:TabClass4}">
-            <usercontrols:UserControl4/>
+            <usercontrols:UserControl4 />
         </DataTemplate>
+        
     </Window.Resources>
     
     <Grid>
