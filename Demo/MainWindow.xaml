@@ -36,9 +36,10 @@
         <DataTemplate DataType="{x:Type vm:TabClass4}">
             <usercontrols:UserControl4 />
         </DataTemplate>
-        
+
     </Window.Resources>
     
+    <!-- Demo把页签放在了窗口的内容中，没有完全实现Chrome的样子，后续修改 -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
