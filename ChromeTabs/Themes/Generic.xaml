@@ -3,22 +3,24 @@
                     xmlns:local="clr-namespace:ChromeTabs"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <!-- 添加标签按钮的样式 -->
     <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ChromeTabPanel}, ResourceId=addButtonStyle}"
            TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid SnapsToDevicePixels="True">
+                    <Grid SnapsToDevicePixels="True" Margin="5,0,0,0">
                         <Path Fill="{TemplateBinding Background}"
                               Stretch="Fill"
                               Stroke="#FF999999"
-                              Data="M36.904667,19.333333 C42.238,19.25 36.238,0.5 34.863116,0.5 23.863116,0.5 19.613032,0.5 2.8630319,0.5 -3.2202511,0.5 4.0712139,19.416667 6.5711261,19.416667 15.593514,19.416667 28.609259,19.462949 36.904667,19.333333 z" />
+                              Data="m 0 652.3622 v -300 H 400 V -47.637817 H 700 V 352.3622 h 400 v 300 H 700 v 400 H 400 v -400 H 0 z" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <!-- 关闭按钮的样式 -->
     <Style TargetType="{x:Type Button}"
            x:Key="CloseButtonStyle">
         <Style.Resources>
@@ -81,6 +83,7 @@
         </Style.Triggers>
     </Style>
 
+    <!--  -->
     <Style TargetType="{x:Type local:ChromeTabControl}"
            xmlns:conv="clr-namespace:ChromeTabs.Converters">
         <Setter Property="Background"
@@ -123,6 +126,8 @@
     <SolidColorBrush x:Key="TabHighlightBrush">White</SolidColorBrush>
     <SolidColorBrush x:Key="SelectedTabHighlighBrush">Transparent</SolidColorBrush>
     <sys:Double x:Key="MinTabWidthToShowCloseButton">60</sys:Double>
+    
+    
     <Style TargetType="{x:Type local:ChromeTabItem}"
            xmlns:conv="clr-namespace:ChromeTabs.Converters">
         <Style.Resources>
@@ -138,6 +143,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="10" />
                         </Grid.ColumnDefinitions>
+                        
                         <local:TabShape x:Name="TabFill"
                                         Stretch="Fill"
                                         Grid.ColumnSpan="4"
@@ -153,11 +159,13 @@
                                 </LinearGradientBrush>
                             </Shape.Fill>
                         </local:TabShape>
+                        
                         <local:TabShape x:Name="TabPath"
                                         VerticalAlignment="Top"
                                         Stroke="{StaticResource TabStrokeBrush}"
                                         Stretch="Fill"
                                         Grid.ColumnSpan="4" />
+                        
                         <local:TabShape x:Name="TabHighlight"
                                         Margin="1,1,1,1"
                                         Grid.ColumnSpan="4"

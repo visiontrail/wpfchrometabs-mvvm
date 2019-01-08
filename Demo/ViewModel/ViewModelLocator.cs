@@ -46,6 +46,7 @@ namespace Demo.ViewModel
                 SimpleIoc.Default.Register<IViewModelCustomStyleExampleWindow, ViewModelCustomStyleExampleWindow>();
             }
 
+            // 这个ChromeTab框架好像不支持以Page作为抽象的前端元素;
             SimpleIoc.Default.Register<TabPageClass1>();
 
         }

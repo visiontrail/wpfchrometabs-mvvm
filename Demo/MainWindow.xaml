@@ -63,6 +63,7 @@
                              DragWindowWithOneTab="True"
                              IsAddButtonVisible="{Binding ShowAddButton}"
                              AddTabCommand="{Binding AddTabCommand}"
+                             AddTabButtonBrush="Black"
                              CloseTabCommand="{Binding CloseTabCommand}"
                              ReorderTabsCommand="{Binding ReorderTabsCommand}"
                              TabTearTriggerDistance="10"

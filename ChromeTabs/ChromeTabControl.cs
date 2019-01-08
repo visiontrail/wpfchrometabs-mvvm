@@ -73,10 +73,14 @@ namespace ChromeTabs
             get => GetValue(SelectedContentProperty);
             set => SetValue(SelectedContentProperty, value);
         }
-        
+
         /// <summary>
         /// 关闭Tab页的执行命令的依赖属性;
         /// 类型是ICommand，宿主实例为ChromeTabControl;
+        /// 参数一：依赖属性的名字，它表明了后续在xaml中就用这个名字来访问赋值这个依赖属性
+        /// 参数二：这个依赖属性是一个ICommand类型;
+        /// 参数三：这个依赖属性的所有者类型;
+        /// 在RemoveTab函数中通过CloseTabCommand.Execute触发;
         /// </summary>
         public static readonly DependencyProperty CloseTabCommandProperty =
             DependencyProperty.Register(
@@ -111,14 +115,14 @@ namespace ChromeTabs
         /// <summary>
         /// 添加Tab页的执行命令的依赖属性;
         /// 类型是ICommand，宿主实例为ChromeTabControl;
-        /// 
         /// </summary>
         public static readonly DependencyProperty AddTabCommandProperty =
             DependencyProperty.Register
             (
                 "AddTabCommand",
                 typeof(ICommand),
-                typeof(ChromeTabControl), new PropertyMetadata(AddTabCommandPropertyChanged)
+                typeof(ChromeTabControl), 
+                new PropertyMetadata(AddTabCommandPropertyChanged)
             );
 
         private static void AddTabCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -191,9 +195,7 @@ namespace ChromeTabs
         // Using a RoutedEvent
         public static readonly RoutedEvent TabDraggedOutsideBondsEvent = EventManager.RegisterRoutedEvent(
             "TabDraggedOutsideBonds", RoutingStrategy.Bubble, typeof(TabDragEventHandler), typeof(ChromeTabControl));
-
-
-
+        
         // Provide CLR accessors for the event
         public event ContainerOverrideEventHandler ContainerItemPreparedForOverride
         {
@@ -271,14 +273,15 @@ namespace ChromeTabs
         public static readonly DependencyProperty SelectedTabBrushProperty =
             DependencyProperty.Register("SelectedTabBrush", typeof(Brush), typeof(ChromeTabControl), new PropertyMetadata(null, SelectedTabBrushPropertyCallback));
 
-
+        /// <summary>
+        /// 添加按钮的颜色的依赖属性;
+        /// </summary>
         public Brush AddTabButtonBrush
         {
             get => (Brush)GetValue(AddButtonBrushProperty);
             set => SetValue(AddButtonBrushProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for AddButtonBrush.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AddButtonBrushProperty =
             DependencyProperty.Register("AddTabButtonBrush", typeof(Brush), typeof(ChromeTabControl), new PropertyMetadata(Brushes.Transparent));
 

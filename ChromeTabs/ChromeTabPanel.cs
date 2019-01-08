@@ -40,6 +40,8 @@ namespace ChromeTabs
     /// Go ahead and use your control in the XAML file.
     ///
     ///     <MyNamespace:ChromeTabs/>
+    /// 
+    /// ChromeTab内容的最基础的类型，重写了WPF的Panel类型;
     ///
     /// </summary>
     [ToolboxItem(false)]
@@ -62,9 +64,11 @@ namespace ChromeTabs
         private Point _downPoint;
         private Point _downTabBoundsPoint;
         private ChromeTabControl _parent;
+
         private Rect _addButtonRect;
         private Size _addButtonSize;
         private Button _addButton;                          // 添加页签按钮;
+
         private DateTime _lastMouseDown;
         private object _lockObject = new object();
 
@@ -72,9 +76,7 @@ namespace ChromeTabs
         protected double MinTabWidth => _parent?.MinimumTabWidth ?? 40;
         protected double MaxTabWidth => _parent?.MaximumTabWidth ?? 125;
         protected double PinnedTabWidth => _parent?.PinnedTabWidth ?? MinTabWidth;
-
-
-
+        
         private bool _isAddButtonEnabled;
 
         public bool IsAddButtonEnabled
@@ -105,10 +107,14 @@ namespace ChromeTabs
             _leftMargin = 0.0;
             _rightMargin = 25.0;
             _defaultMeasureHeight = 30.0;
+
+            // 在初始化ChromeTab的时候，默认都会显示一个添加按钮;
             ComponentResourceKey key = new ComponentResourceKey(typeof(ChromeTabPanel), "addButtonStyle");
             Style addButtonStyle = (Style)FindResource(key);
             _addButton = new Button { Style = addButtonStyle };
             _addButtonSize = new Size(20, 12);
+
+            // 注册窗口事件;
             this.Loaded += ChromeTabPanel_Loaded;
             this.Unloaded += ChromeTabPanel_Unloaded;
         }

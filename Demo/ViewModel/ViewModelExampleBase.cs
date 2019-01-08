@@ -33,7 +33,7 @@ namespace Demo.ViewModel
         public ObservableCollection<TabBase> ItemCollection { get; set; }
 
         /// <summary>
-        /// 重新排序Tab标签;
+        /// 重新排序Tab标签的依赖命令;
         /// </summary>
         public RelayCommand<TabReorder> ReorderTabsCommand { get; set; }
 
@@ -76,8 +76,7 @@ namespace Demo.ViewModel
                 AddTabCommand.RaiseCanExecuteChanged();
             }
         }
-
-
+        
         public ViewModelExampleBase()
         {
             ItemCollection = new ObservableCollection<TabBase>();
