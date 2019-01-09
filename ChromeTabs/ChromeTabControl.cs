@@ -597,6 +597,11 @@ namespace ChromeTabs
                 SetSelectedContent(false);
         }
 
+        /// <summary>
+        /// 当发生标签页被移动;
+        /// </summary>
+        /// <param name="fromIndex"></param>
+        /// <param name="toIndex"></param>
         internal void MoveTab(int fromIndex, int toIndex)
         {
             if (Items.Count == 0 || fromIndex == toIndex || fromIndex >= Items.Count)

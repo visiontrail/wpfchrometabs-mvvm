@@ -79,6 +79,7 @@ namespace Demo.ViewModel
         
         public ViewModelExampleBase()
         {
+            // 以下作用是将;
             ItemCollection = new ObservableCollection<TabBase>();
             ItemCollection.CollectionChanged += ItemCollection_CollectionChanged;
             ReorderTabsCommand = new RelayCommand<TabReorder>(ReorderTabsCommandAction);
